@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CommandeDao.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pizza-spring</a> &gt; <a href="index.source.html" class="el_package">pizza.spring.dao</a> &gt; <span class="el_source">CommandeDao.java</span></div><h1>CommandeDao.java</h1><pre class="source lang-java linenums">package pizza.spring.dao;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import org.springframework.stereotype.Repository;
+
+import pizza.spring.exception.PasDeCommandeSuivanteException;
+import pizza.spring.modele.Commande;
+
+@Repository
+<span class="nc" id="L14">public class CommandeDao {</span>
+	
+	@PersistenceContext
+	private EntityManager em;
+
+	public void sauver(Commande commande) {
+<span class="nc" id="L20">		em.persist(commande);</span>
+<span class="nc" id="L21">	}</span>
+
+	public Commande getRecapById(Long idCommande) {
+<span class="nc" id="L24">		return em.find(Commande.class, idCommande);</span>
+	}
+
+	public Commande getCommandeSuivante() throws PasDeCommandeSuivanteException {
+<span class="nc" id="L28">		List&lt;Commande&gt; commandes =  em.createQuery(&quot;select c from Commande c where c.enAttente = true order by c.dateEmission&quot;, Commande.class)</span>
+<span class="nc" id="L29">									  .setMaxResults(1)</span>
+<span class="nc" id="L30">									  .getResultList();</span>
+<span class="nc bnc" id="L31" title="All 2 branches missed.">		if (commandes.isEmpty()) {</span>
+<span class="nc" id="L32">			throw new PasDeCommandeSuivanteException();</span>
+		}
+<span class="nc" id="L34">		return commandes.get(0);</span>
+	}
+
+	public List&lt;Commande&gt; getCommandesEnAttente() {
+<span class="nc" id="L38">		return em.createQuery(&quot;select c from Commande c where c.enAttente = true order by c.dateEmission&quot;, Commande.class)</span>
+<span class="nc" id="L39">				 .getResultList();</span>
+	}
+
+	public void signalerCommandePrete(Long id) {
+<span class="nc" id="L43">		em.createQuery(&quot;update Commande c set c.enAttente = false where c.id = :id&quot;)</span>
+<span class="nc" id="L44">		  .setParameter(&quot;id&quot;, id)</span>
+<span class="nc" id="L45">		  .executeUpdate();</span>
+<span class="nc" id="L46">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

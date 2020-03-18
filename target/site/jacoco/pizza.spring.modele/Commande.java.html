@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Commande.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">pizza-spring</a> &gt; <a href="index.source.html" class="el_package">pizza.spring.modele</a> &gt; <span class="el_source">Commande.java</span></div><h1>Commande.java</h1><pre class="source lang-java linenums">package pizza.spring.modele;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+@Entity
+<span class="fc" id="L18">public class Commande {</span>
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	private String nom;
+	private String telephone;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dateEmission;
+	private boolean enAttente;
+<span class="fc" id="L28">	@OneToMany(cascade = CascadeType.ALL, mappedBy = &quot;commande&quot;, fetch = FetchType.EAGER)</span>
+	private List&lt;DetailCommande&gt; details = new ArrayList&lt;&gt;();
+
+	public Long getId() {
+<span class="nc" id="L32">		return id;</span>
+	}
+
+	public void setId(Long id) {
+<span class="nc" id="L36">		this.id = id;</span>
+<span class="nc" id="L37">	}</span>
+
+	public String getNom() {
+<span class="fc" id="L40">		return nom;</span>
+	}
+
+	public void setNom(String nom) {
+<span class="fc" id="L44">		this.nom = nom;</span>
+<span class="fc" id="L45">	}</span>
+
+	public String getTelephone() {
+<span class="fc" id="L48">		return telephone;</span>
+	}
+
+	public void setTelephone(String telephone) {
+<span class="fc" id="L52">		this.telephone = telephone;</span>
+<span class="fc" id="L53">	}</span>
+
+	public Date getDateEmission() {
+<span class="fc" id="L56">		return dateEmission;</span>
+	}
+
+	public void setDateEmission(Date dateEmission) {
+<span class="fc" id="L60">		this.dateEmission = dateEmission;</span>
+<span class="fc" id="L61">	}</span>
+
+	public boolean isEnAttente() {
+<span class="fc" id="L64">		return enAttente;</span>
+	}
+
+	public void setEnAttente(boolean enAttente) {
+<span class="fc" id="L68">		this.enAttente = enAttente;</span>
+<span class="fc" id="L69">	}</span>
+
+	public List&lt;DetailCommande&gt; getDetails() {
+<span class="fc" id="L72">		return details;</span>
+	}
+
+	public void setDetails(List&lt;DetailCommande&gt; details) {
+<span class="nc" id="L76">		this.details = details;</span>
+<span class="nc" id="L77">	}</span>
+	
+	public void ajouter(Pizza pizza) {
+<span class="fc" id="L80">		DetailCommande detailCommande = new DetailCommande();</span>
+<span class="fc" id="L81">		detailCommande.setPizza(pizza);</span>
+<span class="fc" id="L82">		detailCommande.setCommande(this);</span>
+<span class="fc" id="L83">		this.details.add(detailCommande);</span>
+<span class="fc" id="L84">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

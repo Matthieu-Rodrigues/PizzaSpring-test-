@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="4" failures="0" name="pizza.spring.service.CommandeServiceTest" time="1.802" errors="0" skipped="0">
+<testsuite tests="4" failures="0" name="pizza.spring.service.CommandeServiceTest" time="1.046" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="java.vm.version" value="11.0.4+10-LTS"/>
@@ -45,7 +45,7 @@
     <property name="java.class.path" value="C:\Program Files\apache-maven-3.6.3\bin\..\boot\plexus-classworlds-2.6.0.jar"/>
     <property name="java.vm.specification.version" value="11"/>
     <property name="sun.arch.data.model" value="64"/>
-    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher test"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher package"/>
     <property name="java.home" value="C:\Program Files\Java\jdk-11.0.4"/>
     <property name="user.language" value="fr"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
@@ -65,8 +65,8 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="pizza.spring.service.CommandeServiceTest" name="commander_positionne_le_nom_et_le_telephone" time="1.744"/>
+  <testcase classname="pizza.spring.service.CommandeServiceTest" name="commander_positionne_le_nom_et_le_telephone" time="1.006"/>
   <testcase classname="pizza.spring.service.CommandeServiceTest" name="commander_cree_une_commande_en_attente_avec_une_date" time="0.001"/>
-  <testcase classname="pizza.spring.service.CommandeServiceTest" name="commander_ajoute_une_pizza_dans_la_commande" time="0.033"/>
-  <testcase classname="pizza.spring.service.CommandeServiceTest" name="commander_sauve_la_commande" time="0.024"/>
+  <testcase classname="pizza.spring.service.CommandeServiceTest" name="commander_ajoute_une_pizza_dans_la_commande" time="0.024"/>
+  <testcase classname="pizza.spring.service.CommandeServiceTest" name="commander_sauve_la_commande" time="0.015"/>
 </testsuite>

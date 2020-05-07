@@ -7,3 +7,4 @@
 # fichiers Itellij IDEA a ignorer
 .idea
 *.iml
+/target/
